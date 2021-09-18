@@ -9,13 +9,21 @@ const clearBtn = document.querySelector(".clear-tasks")
 loadEventListeners()
 
 function loadEventListeners() {
-  // add task eventj
+  // add task event
   form.addEventListener("submit", addTask)
+  // remove task event
+  taskList.addEventListener("click", removeTask)
 }
 function addTask(e) {
   if (taskInput.value === "") {
     alert("Add a task")
   }
+  // whenever new task is added we create a
+  // <li>
+  //    text
+  //    icon
+  // </li>
+
   // crreate li element
   const li = document.createElement("li")
   li.className = "collection-item"
@@ -26,14 +34,16 @@ function addTask(e) {
   link.className = "delete-item secondary-content"
   // add icon html
   link.innerHTML = '<i class="fas fa-minus-circle"></i>'
-
+  //append icon
   li.appendChild(link)
-
+  // append the created li to ul
   taskList.appendChild(li)
-
-  console.log(li)
   // clear input
   taskInput.value = ""
   e.preventDefault()
 }
-taskInput.style.color = "red"
+function removeTask(e) {
+  if (e.target.parentElement.classList.contains("delete-item")) {
+    if (confirm("Are you sure")) e.target.parentElement.parentElement.remove()
+  }
+}
