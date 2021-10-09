@@ -32,7 +32,7 @@ class EasyHTTP {
       headers: { "Content-type": "application/json" },
     });
 
-    const resData = await "Resorce Deleted";
+    const resData = "Resorce Deleted";
     return resData;
   }
 }
